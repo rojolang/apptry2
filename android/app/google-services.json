@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "252326320556",
+    "project_id": "rob-dev-oct28-327h10",
+    "storage_bucket": "rob-dev-oct28-327h10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252326320556:android:2d0443b148355bd1db4209",
+        "android_client_info": {
+          "package_name": "com.mycompany.mainssapps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG5cD6y5LkifJG8X5rM7uhTq-8BeqAmAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
