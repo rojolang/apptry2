@@ -7,5 +7,19 @@ service cloud.firestore {
       allow write: if request.auth.uid == resource.data.uid;
       allow delete: if false;
     }
+
+    match /articles/{document} {
+      allow create: if request.auth != null;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    match /static_pages/{document} {
+      allow create: if request.auth != null;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
   }
 }

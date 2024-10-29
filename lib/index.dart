@@ -8,3 +8,4 @@ export '/settings1_notifications/settings1_notifications_widget.dart'
     show Settings1NotificationsWidget;
 export '/settings/profile_page_copy/profile_page_copy_widget.dart'
     show ProfilePageCopyWidget;
+export '/terms/terms_widget.dart' show TermsWidget;

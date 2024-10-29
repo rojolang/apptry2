@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 import '/auth/base_auth_user_provider.dart';
 
-import '/backend/push_notifications/push_notifications_handler.dart'
-    show PushNotificationsHandler;
 import '/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -111,6 +110,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'profilePageCopy',
           path: '/profilePageCopy',
           builder: (context, params) => const ProfilePageCopyWidget(),
+        ),
+        FFRoute(
+          name: 'terms',
+          path: '/terms',
+          builder: (context, params) => const TermsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -306,7 +310,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : PushNotificationsHandler(child: page);
+              : page;
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

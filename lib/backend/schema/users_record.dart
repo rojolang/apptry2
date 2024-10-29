@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -40,30 +41,10 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get dateOfBirth => _dateOfBirth;
   bool hasDateOfBirth() => _dateOfBirth != null;
 
-  // "displayName" field.
-  String? _displayName;
-  String get displayName => _displayName ?? '';
-  bool hasDisplayName() => _displayName != null;
-
-  // "photoURL" field.
-  String? _photoURL;
-  String get photoURL => _photoURL ?? '';
-  bool hasPhotoURL() => _photoURL != null;
-
-  // "phoneNumber" field.
-  String? _phoneNumber;
-  String get phoneNumber => _phoneNumber ?? '';
-  bool hasPhoneNumber() => _phoneNumber != null;
-
   // "age" field.
   int? _age;
   int get age => _age ?? 0;
   bool hasAge() => _age != null;
-
-  // "gender" field.
-  String? _gender;
-  String get gender => _gender ?? '';
-  bool hasGender() => _gender != null;
 
   // "address_street" field.
   String? _addressStreet;
@@ -120,10 +101,35 @@ class UsersRecord extends FirestoreRecord {
   int get signInCount => _signInCount ?? 0;
   bool hasSignInCount() => _signInCount != null;
 
+  // "display_name" field.
+  String? _displayName;
+  String get displayName => _displayName ?? '';
+  bool hasDisplayName() => _displayName != null;
+
+  // "phone_number" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  bool hasPhoneNumber() => _phoneNumber != null;
+
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
   // "role" field.
-  String? _role;
-  String get role => _role ?? '';
+  UserRole? _role;
+  UserRole? get role => _role;
   bool hasRole() => _role != null;
+
+  // "gender" field.
+  Gender? _gender;
+  Gender? get gender => _gender;
+  bool hasGender() => _gender != null;
+
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -131,11 +137,7 @@ class UsersRecord extends FirestoreRecord {
     _firstName = snapshotData['firstName'] as String?;
     _lastName = snapshotData['lastName'] as String?;
     _dateOfBirth = snapshotData['dateOfBirth'] as DateTime?;
-    _displayName = snapshotData['displayName'] as String?;
-    _photoURL = snapshotData['photoURL'] as String?;
-    _phoneNumber = snapshotData['phoneNumber'] as String?;
     _age = castToType<int>(snapshotData['age']);
-    _gender = snapshotData['gender'] as String?;
     _addressStreet = snapshotData['address_street'] as String?;
     _addressCity = snapshotData['address_city'] as String?;
     _addressState = snapshotData['address_state'] as String?;
@@ -147,7 +149,12 @@ class UsersRecord extends FirestoreRecord {
     _createAt = snapshotData['createAt'] as DateTime?;
     _lastSignIn = snapshotData['lastSignIn'] as DateTime?;
     _signInCount = castToType<int>(snapshotData['signInCount']);
-    _role = snapshotData['role'] as String?;
+    _displayName = snapshotData['display_name'] as String?;
+    _phoneNumber = snapshotData['phone_number'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _role = deserializeEnum<UserRole>(snapshotData['role']);
+    _gender = deserializeEnum<Gender>(snapshotData['gender']);
+    _photoUrl = snapshotData['photo_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -189,11 +196,7 @@ Map<String, dynamic> createUsersRecordData({
   String? firstName,
   String? lastName,
   DateTime? dateOfBirth,
-  String? displayName,
-  String? photoURL,
-  String? phoneNumber,
   int? age,
-  String? gender,
   String? addressStreet,
   String? addressCity,
   String? addressState,
@@ -205,7 +208,12 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createAt,
   DateTime? lastSignIn,
   int? signInCount,
-  String? role,
+  String? displayName,
+  String? phoneNumber,
+  DateTime? createdTime,
+  UserRole? role,
+  Gender? gender,
+  String? photoUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -214,11 +222,7 @@ Map<String, dynamic> createUsersRecordData({
       'firstName': firstName,
       'lastName': lastName,
       'dateOfBirth': dateOfBirth,
-      'displayName': displayName,
-      'photoURL': photoURL,
-      'phoneNumber': phoneNumber,
       'age': age,
-      'gender': gender,
       'address_street': addressStreet,
       'address_city': addressCity,
       'address_state': addressState,
@@ -230,7 +234,12 @@ Map<String, dynamic> createUsersRecordData({
       'createAt': createAt,
       'lastSignIn': lastSignIn,
       'signInCount': signInCount,
+      'display_name': displayName,
+      'phone_number': phoneNumber,
+      'created_time': createdTime,
       'role': role,
+      'gender': gender,
+      'photo_url': photoUrl,
     }.withoutNulls,
   );
 
@@ -247,11 +256,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.firstName == e2?.firstName &&
         e1?.lastName == e2?.lastName &&
         e1?.dateOfBirth == e2?.dateOfBirth &&
-        e1?.displayName == e2?.displayName &&
-        e1?.photoURL == e2?.photoURL &&
-        e1?.phoneNumber == e2?.phoneNumber &&
         e1?.age == e2?.age &&
-        e1?.gender == e2?.gender &&
         e1?.addressStreet == e2?.addressStreet &&
         e1?.addressCity == e2?.addressCity &&
         e1?.addressState == e2?.addressState &&
@@ -263,7 +268,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createAt == e2?.createAt &&
         e1?.lastSignIn == e2?.lastSignIn &&
         e1?.signInCount == e2?.signInCount &&
-        e1?.role == e2?.role;
+        e1?.displayName == e2?.displayName &&
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.role == e2?.role &&
+        e1?.gender == e2?.gender &&
+        e1?.photoUrl == e2?.photoUrl;
   }
 
   @override
@@ -273,11 +283,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.firstName,
         e?.lastName,
         e?.dateOfBirth,
-        e?.displayName,
-        e?.photoURL,
-        e?.phoneNumber,
         e?.age,
-        e?.gender,
         e?.addressStreet,
         e?.addressCity,
         e?.addressState,
@@ -289,7 +295,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createAt,
         e?.lastSignIn,
         e?.signInCount,
-        e?.role
+        e?.displayName,
+        e?.phoneNumber,
+        e?.createdTime,
+        e?.role,
+        e?.gender,
+        e?.photoUrl
       ]);
 
   @override
