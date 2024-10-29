@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'terms_model.dart';
 export 'terms_model.dart';
 
@@ -188,6 +189,13 @@ class _TermsWidgetState extends State<TermsWidget> {
                                           .primaryText,
                                       letterSpacing: 0.0,
                                     ),
+                              ),
+                            ),
+                            Expanded(
+                              child: MarkdownBody(
+                                data: termsStaticPagesRecord!.content,
+                                selectable: true,
+                                onTapLink: (_, url, __) => launchURL(url!),
                               ),
                             ),
                           ].divide(const SizedBox(height: 16.0)),
